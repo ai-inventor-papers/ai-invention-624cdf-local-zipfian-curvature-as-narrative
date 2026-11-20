@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "evaluation_name": "global_zipfian_fit_accuracy",
+    "description": "Global MLE-based fitting of Zipf and Zipf-Mandelbrot models to Pride and Prejudice with KS, AIC/BIC, and residual analysis",
+    "parameters": {
+      "tokenization": "regex [a-zA-Z]+ lowercase",
+      "fitting_method": "MLE via Nelder-Mead (ZM) and bounded scalar (Zipf)",
+      "goodness_of_fit": "KS statistic",
+      "model_comparison": "AIC/BIC",
+      "residual_bins": "head (top 10%), mid, tail (bottom 10%)"
+    }
+  },
+  "metrics_agg": {
+    "n_tokens": 122881.0,
+    "n_types": 6271.0,
+    "n_ranks": 6271.0,
+    "zipf_s": 1.0010056272664205,
+    "zipf_ks": 0.10116904563946652,
+    "zipf_aic": 1567420.9190291145,
+    "zipf_bic": 1567427.662720225,
+    "zipf_r2": 0.7560077867083541,
+    "zipf_log_likelihood": -783709.4595145573,
+    "zm_s": 1.271028937462497,
+    "zm_b": 8.248992938871499,
+    "zm_ks": 0.011387789021826536,
+    "zm_aic": 1545803.2571302804,
+    "zm_bic": 1545816.7445125014,
+    "zm_r2": 0.9658927214687317,
+    "zm_log_likelihood": -772899.6285651402,
+    "delta_aic": -21617.661898834165,
+    "delta_bic": -21610.918207723647
+  },
+  "datasets": [
+    {
+      "dataset": "pride_and_prejudice",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"pride_and_prejudice\", \"task\": \"global_zipfian_fit\", \"models\": [\"zipf\", \"zipf_mandelbrot\"], \"fitting_method\": \"MLE\"}",
+          "output": "{\"zipf_model\": {\"s\": 1.0010056272664205, \"b\": 0.0, \"log_likelihood\": -783709.4595145573, \"ks_statistic\": 0.10116904563946652, \"aic\": 1567420.9190291145, \"bic\": 1567427.662720225, \"r2_loglog\": 0.7560077867083541, \"residual_bins\": {\"head\": {\"mean_residual\": 14.211340462766888, \"std_residual\": 379.3399555765322, \"n\": 627}, \"mid\": {\"mean_residual\": -1.625648193385368, \"std_residual\": 0.6393905144335617, \"n\": 5015}, \"tail\": {\"mean_residual\": -1.204904261251514, \"std_residual\": 0.06735085799673765, \"n\": 629}}}, \"zipf_mandelbrot_model\": {\"s\": 1.271028937462497, \"b\": 8.248992938871499, \"log_likelihood\": -772899.6285651402, \"ks_statistic\": 0.011387789021826536, \"aic\": 1545803.2571302804, \"bic\": 1545816.7445125014, \"r2_loglog\": 0.9658927214687317, \"residual_bins\": {\"head\": {\"mean_residual\": 0.09154659768981047, \"std_residual\": 45.32346309479902, \"n\": 627}, \"mid\": {\"mean_residual\": 0.006987085001394573, \"std_residual\": 0.7616279645580597, \"n\": 5015}, \"tail\": {\"mean_residual\": -0.14696335140457878, \"std_residual\": 0.04442834326366058, \"n\": 629}}}, \"model_comparison\": {\"delta_aic\": -21617.661898834165, \"delta_bic\": -21610.918207723647, \"preferred_model\": \"zipf_mandelbrot\"}}",
+          "metadata_dataset": "pride_and_prejudice",
+          "metadata_n_tokens": 122881,
+          "metadata_n_types": 6271,
+          "metadata_n_ranks": 6271,
+          "eval_zipf_ks": 0.10116904563946652,
+          "eval_zm_ks": 0.011387789021826536,
+          "eval_delta_aic": -21617.661898834165,
+          "eval_delta_bic": -21610.918207723647,
+          "eval_preferred_zm": 1.0
+        }
+      ]
+    }
+  ]
+}
