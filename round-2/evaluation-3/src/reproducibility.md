@@ -47,7 +47,7 @@ The following input files must be present in the workspace (they are part of the
 | `full_data_out.json` | Dependency artifact `art_e75eaOjXRd1x` (gen_art_dataset_1) | 13 MB |
 | `pride_and_prejudice_clean.txt` | Same dependency | 692 KB |
 
-**Note**: These files are published as sibling folders in the repository. The dependency artifact `art_e75eaOjXRd1x` should be available at `../../../iter_1/gen_art/gen_art_dataset_1/`.
+**Note**: These files are published as sibling folders in the repository. The dependency artifact `art_e75eaOjXRd1x` should be available at `../../../round-1/dataset-1/src/`.
 
 If running outside the full repo, copy them manually:
 ```bash

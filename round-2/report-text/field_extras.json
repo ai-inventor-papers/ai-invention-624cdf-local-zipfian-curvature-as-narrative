@@ -1,0 +1,7 @@
+[
+  {"extra": "interactive visualization of semantic drift trajectories in embedding space", "claim_kind": "representation geometry", "seen_in": ["Dasgupta (2026)"], "needs_during_run": "sentence embeddings and drift vectors saved per window", "delivered_in": "html_demo"},
+  {"extra": "released tokenizer code and vocabulary selection algorithm", "claim_kind": "reproducibility", "seen_in": ["He et al. (2025)"], "needs_during_run": "tokenizer training code and alignment scoring pipeline", "delivered_in": "repo"},
+  {"extra": "full per-text results for all 30 texts analyzed", "claim_kind": "transparency", "seen_in": ["Corral et al. (2015)"], "needs_during_run": "per-section and per-window parameter estimates saved", "delivered_in": "appendix"},
+  {"extra": "theoretical model with fitted parameters for each text", "claim_kind": "mechanistic explanation", "seen_in": ["Altmann et al. (2012)"], "needs_during_run": "model fitting code and parameter uncertainty estimates", "delivered_in": "paper"},
+  {"extra": "two-component model separating function and content words", "claim_kind": "model interpretation", "seen_in": ["Montemurro (2001)"], "needs_during_run": "function word lists and separate fits for each component", "delivered_in": "paper"}
+]

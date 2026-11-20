@@ -82,13 +82,13 @@ python scripts/chart_gen.py --spec /path/to/zipf_spec.json --out /path/to/zipf_c
 
 The following files can be regenerated or re-downloaded:
 
-- `full_data_out.json`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/full_data_out.json .`
-- `full_method_out.json`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_experiment_1/full_method_out.json .`
-- `pride_and_prejudice_clean.txt`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/pride_and_prejudice_clean.txt .`
+- `full_data_out.json`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/round-1/dataset-1/src/full_data_out.json .`
+- `full_method_out.json`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/round-1/experiment-1/src/full_method_out.json .`
+- `pride_and_prejudice_clean.txt`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/round-1/dataset-1/src/pride_and_prejudice_clean.txt .`
 - `zipf_comparison.png`: Run `uv run create_spec.py` then use `aii-data-fig-gen` skill
 - `zipf_spec.json`: Run `uv run create_spec.py`
-- `preview_data_out.json`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/preview_data_out.json .`
-- `preview_method_out.json`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_experiment_1/preview_method_out.json .`
+- `preview_data_out.json`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/round-1/dataset-1/src/preview_data_out.json .`
+- `preview_method_out.json`: `cp /Volumes/aii-s20007/work/run_fODCbnzS2ZPQ/round-1/experiment-1/src/preview_method_out.json .`
 - `test_load.py`: Simple test script (can be recreated)
 
 ## Methodology Notes
