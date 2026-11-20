@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "method_name": "zipf_mandelbrot_curvature_semantic_drift",
+    "description": "Correlation between Zipf-Mandelbrot curvature drift and semantic drift in narrative windows across 10 sections",
+    "parameters": {
+      "window_size": 500,
+      "stride": 100,
+      "embedding_dim": 300,
+      "n_shuffles": 10,
+      "num_sections": 10
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "pride_and_prejudice",
+      "examples": [
+        {
+          "input": "Analyze Zipfian curvature and semantic drift in Pride and Prejudice section 1 using zipf_mandelbrot_mle",
+          "output": "{\"section_index\": 0, \"num_windows\": 88, \"num_valid_windows\": 87, \"window_size\": 500, \"stride\": 100, \"use_mle\": true, \"correlation\": {\"pearson_r\": -0.08468759189035388, \"pearson_p\": 0.43545521904009155...",
+          "metadata_method": "zipf_mandelbrot_mle",
+          "metadata_section": "0",
+          "predict_pearson_r": "-0.08468759189035388",
+          "predict_spearman_r": "-0.07250127578916672",
+          "predict_significance_p": "0.6967803112290889"
+        },
+        {
+          "input": "Analyze Zipfian curvature and semantic drift in Pride and Prejudice section 2 using zipf_mandelbrot_mle",
+          "output": "{\"section_index\": 1, \"num_windows\": 88, \"num_valid_windows\": 87, \"window_size\": 500, \"stride\": 100, \"use_mle\": true, \"correlation\": {\"pearson_r\": -0.13797084246919272, \"pearson_p\": 0.20252257379637573...",
+          "metadata_method": "zipf_mandelbrot_mle",
+          "metadata_section": "1",
+          "predict_pearson_r": "-0.13797084246919272",
+          "predict_spearman_r": "-0.09993074287380621",
+          "predict_significance_p": "0.14771438829984174"
+        },
+        {
+          "input": "Analyze Zipfian curvature and semantic drift in Pride and Prejudice section 3 using zipf_mandelbrot_mle",
+          "output": "{\"section_index\": 2, \"num_windows\": 88, \"num_valid_windows\": 87, \"window_size\": 500, \"stride\": 100, \"use_mle\": true, \"correlation\": {\"pearson_r\": -0.018175171914681078, \"pearson_p\": 0.8673004057118593...",
+          "metadata_method": "zipf_mandelbrot_mle",
+          "metadata_section": "2",
+          "predict_pearson_r": "-0.018175171914681078",
+          "predict_spearman_r": "0.027557046001312233",
+          "predict_significance_p": "0.8169164986793098"
+        }
+      ]
+    }
+  ]
+}

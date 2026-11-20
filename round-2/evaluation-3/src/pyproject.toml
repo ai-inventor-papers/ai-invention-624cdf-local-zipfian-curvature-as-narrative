@@ -1,0 +1,17 @@
+[project]
+name = "zipfian-fit-evaluation"
+version = "0.1.0"
+description = "Global Zipfian fit and statistics correction for Pride and Prejudice"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy==2.2.6",
+    "scipy==1.16.3",
+    "matplotlib==3.10.7",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
+dev-dependencies = []
