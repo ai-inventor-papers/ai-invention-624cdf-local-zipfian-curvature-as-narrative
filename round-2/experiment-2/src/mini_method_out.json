@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "method_name": "Global Zipf Fit on Pride and Prejudice",
+    "description": "MLE fitting of Zipf and Zipf-Mandelbrot models to global word frequencies",
+    "parameters": {
+      "n_bootstrap": 100,
+      "model_types": [
+        "zipf",
+        "zipf_mandelbrot"
+      ]
+    },
+    "novel_stats": {
+      "total_tokens": 123350,
+      "vocabulary_size": 6425,
+      "max_frequency": 4338,
+      "min_frequency": 1
+    },
+    "bootstrap_ci": {
+      "zipf": {
+        "s": [
+          0.9911004911652695,
+          0.9952106434765149
+        ]
+      },
+      "zipf_mandelbrot": {
+        "s": [
+          1.258252762876514,
+          1.2690043084742577
+        ],
+        "b": [
+          7.943007670724084,
+          8.41004930743093
+        ]
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "pride_and_prejudice_global_zipf",
+      "examples": [
+        {
+          "input": "{\"task\": \"fit_zipf_mle\", \"model\": \"zipf\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"s\": 0.9924272695949843, \"nll\": 788766.4305548917, \"aic\": 1577534.8611097834, \"ks_statistic\": 0.09349229078785598, \"r2_loglog\": 0.7390240538164308, \"bootstrap_ci\": [0.9911004911652695, 0.9952106434765149]}",
+          "metadata_model": "zipf",
+          "metadata_n_params": 1,
+          "predict_zipf": "{\"s\": 0.9924272695949843, \"model\": \"zipf\"}"
+        },
+        {
+          "input": "{\"task\": \"fit_zipf_mle\", \"model\": \"zipf_mandelbrot\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"s\": 1.2671043263376347, \"b\": 8.164884585229958, \"nll\": 778034.4437352057, \"aic\": 1556072.8874704114, \"ks_statistic\": 0.011195099331401032, \"r2_loglog\": 0.9664875488563884, \"bootstrap_ci\": {\"s\": [1.258252762876514, 1.2690043084742577], \"b\": [7.943007670724084, 8.41004930743093]}}",
+          "metadata_model": "zipf_mandelbrot",
+          "metadata_n_params": 2,
+          "predict_zipf_mandelbrot": "{\"s\": 1.2671043263376347, \"b\": 8.164884585229958, \"model\": \"zipf_mandelbrot\"}"
+        },
+        {
+          "input": "{\"task\": \"compare_models\", \"models\": [\"zipf\", \"zipf_mandelbrot\"], \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"aic_diff_zipf_minus_zm\": 21461.973639372038, \"preferred_model\": \"zipf_mandelbrot\", \"ks_zipf\": 0.09349229078785598, \"ks_zm\": 0.011195099331401032, \"r2_zipf\": 0.7390240538164308, \"r2_zm\": 0.9664875488563884}",
+          "metadata_model": "comparison",
+          "metadata_n_params": 0,
+          "predict_comparison": "{\"preferred\": \"zipf_mandelbrot\", \"aic_diff\": 21461.973639372038}"
+        }
+      ]
+    }
+  ]
+}
