@@ -1,0 +1,22 @@
+{
+  "type": "bar",
+  "title": "Per-Section Pearson Correlations with Shuffled Baseline",
+  "xlabel": "Section",
+  "ylabel": "Pearson r",
+  "aspect": "16:9",
+  "categories": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  "series": [
+    {
+      "label": "Observed",
+      "values": [-0.0847, -0.1380, -0.0182, -0.0850, -0.0428, 0.1155, -0.0599, 0.0580, 0.0579, -0.0558]
+    },
+    {
+      "label": "Baseline mean",
+      "values": [-0.0563, 0.0009, 0.0055, 0.0018, 0.0218, 0.0297, 0.0303, -0.0229, -0.0265, -0.0299]
+    }
+  ],
+  "color_map": {
+    "Observed": "#0173B2",
+    "Baseline mean": "#DE8F05"
+  }
+}

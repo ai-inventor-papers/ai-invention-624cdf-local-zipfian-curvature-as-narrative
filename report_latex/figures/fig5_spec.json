@@ -1,0 +1,34 @@
+{
+  "type": "barh",
+  "title": "Residuals by Frequency Rank Bin: Zipf vs Zipf-Mandelbrot",
+  "xlabel": "Mean residual (observed \u2212 fitted frequency; counts)",
+  "xlim": [-2.8, 15.6],
+  "ylabel": "Rank bin",
+  "aspect": "16:9",
+  "categories": [
+    "Bin 1 (head)",
+    "Bin 2",
+    "Bin 3",
+    "Bin 4",
+    "Bin 5",
+    "Bin 6",
+    "Bin 7",
+    "Bin 8",
+    "Bin 9",
+    "Bin 10 (tail)"
+  ],
+  "series": [
+    {
+      "label": "Zipf-Mandelbrot",
+      "values": [0.09, 1.54, 0.40, -0.04, -0.18, -0.25, -0.64, -0.51, -0.29, -0.12]
+    },
+    {
+      "label": "Zipf",
+      "values": [15.07, -0.73, -1.90, -2.06, -1.96, -1.83, -2.06, -1.81, -1.48, -1.22]
+    }
+  ],
+  "color_map": {
+    "Zipf-Mandelbrot": "#0173B2",
+    "Zipf": "#949494"
+  }
+}
