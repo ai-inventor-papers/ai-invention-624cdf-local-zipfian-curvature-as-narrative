@@ -28,25 +28,19 @@ pip install --upgrade pip
 
 # Install pinned dependencies (matching pyproject.toml)
 pip install \
-    attrs==26.1.0 \
-    contourpy==1.4.0 \
-    cycler==0.12.1 \
-    fonttools==4.68.0 \
-    jsonschema==4.26.0 \
-    jsonschema-specifications==2025.9.1 \
-    kiwisolver==1.5.1 \
-    loguru==0.8.0 \
-    matplotlib==3.11.2 \
-    numpy==2.5.5 \
-    packaging==26.3 \
+    numpy==2.2.6 \
+    scipy==1.16.3 \
+    loguru==0.7.3 \
+    matplotlib==3.10.7 \
+    jsonschema==4.25.1 \
+    kiwisolver==1.4.9 \
     pillow==13.0.0 \
-    pyparsing==3.3.3 \
-    python-dateutil==4.0.0 \
-    referencing==0.37.0 \
-    rpds-py==2026.9.1 \
-    scipy==1.18.1 \
-    typing-extensions==4.16.0 \
-    tzdata==2026.6
+    contourpy==1.3.3 \
+    cycler==0.12.1 \
+    fonttools==4.63.0 \
+    packaging==25.0 \
+    pyparsing==3.2.5 \
+    python-dateutil==2.9.0.post0
 ```
 
 ## 4. Required Input Data
@@ -80,41 +74,46 @@ After successful execution, you should get:
 
 | File | Description |
 |------|-------------|
-| `eval_out.json` | Full schema-compliant results (exp_eval_sol_out format) |
-| `full_eval_out.json` | Copy of eval_out.json (full results) |
+| `exp_eval_sol_out.json` | Full schema-compliant results (exp_eval_sol_out format) |
+| `full_eval_out.json` | Copy of exp_eval_sol_out.json (full results) |
 | `mini_eval_out.json` | First 3 examples only (for quick inspection) |
 | `preview_eval_out.json` | Truncated strings (for quick inspection) |
-| `figures/fig1_loglog.pdf/png` | Rank-frequency distribution (log-log) |
-| `figures/fig2_residuals.pdf/png` | Residuals vs fitted values |
-| `figures/fig3_model_comparison.pdf/png` | Model comparison bar chart |
-| `figures/fig4_residual_bins.pdf/png` | Residual analysis by rank bin |
-| `figures/fig5_panel.pdf/png` | Multi-panel composite figure |
-| `logs/run.log` | Execution log with timestamps |
+| `fig_model_comparison.pdf/png` | Model comparison bar chart |
+| `fig_residuals.pdf/png` | Residual-by-bin horizontal bar chart |
+| `fig_rank_freq.pdf/png` | Rank-frequency scatter with model fits |
 
 ## 7. Key Results to Verify
 
 The evaluation should produce these headline numbers (±0.001 tolerance for float values):
 
-| Metric | Zipf | Zipf-Mandelbrot |
-|--------|------|-----------------|
-| Exponent (s) | 1.0010 | 1.2710 |
-| Curvature (b) | 0.0 (fixed) | 8.2490 |
-| Log-Likelihood | -783,709.46 | -772,899.63 |
-| KS Statistic | 0.1012 | 0.0114 |
-| AIC | 1,567,420.92 | 1,545,803.26 |
-| BIC | 1,567,427.66 | 1,545,816.74 |
-| R² (log-log) | 0.7560 | 0.9659 |
+| Metric | Zipf (b=0) | Zipf-Mandelbrot |
+|--------|------------|-----------------|
+| Exponent (s) | 0.9925 | 1.2661 |
+| Curvature (b) | 0.0 (fixed) | 8.1380 |
+| KS Statistic | 0.0934 | 0.0112 |
+| AIC | 1,581,276.42 | 1,559,827.09 |
+| BIC | 1,581,286.15 | 1,559,846.54 |
+| R² (log-log) | 0.7410 | 0.9671 |
 
 **Model Comparison**:
-- ΔAIC = -21,617.66 (Zipf-Mandelbrot preferred)
-- ΔBIC = -21,610.92 (Zipf-Mandelbrot preferred)
+- ΔAIC = 21,449.33 (Zipf-Mandelbrot preferred)
+- ΔBIC = 21,439.61 (Zipf-Mandelbrot preferred)
+- KS improves 8.4× (0.093 → 0.011)
+- R² improves from 0.741 to 0.967
 
 **Residual Analysis (mean residuals by bin)**:
 | Bin | Zipf | Zipf-Mandelbrot |
 |-----|------|-----------------|
-| Head (top 10%) | 14.21 | 0.092 |
-| Mid (middle 80%) | -1.63 | 0.007 |
-| Tail (bottom 10%) | -1.20 | -0.147 |
+| Ranks 1-648 (head) | 15.07 | 0.09 |
+| Ranks 649-1296 | -0.73 | 1.54 |
+| Ranks 1297-1944 | -1.90 | 0.40 |
+| Ranks 1945-2592 | -2.06 | -0.04 |
+| Ranks 2593-3240 | -1.96 | -0.18 |
+| Ranks 3241-3888 | -1.83 | -0.25 |
+| Ranks 3889-4536 | -2.06 | -0.64 |
+| Ranks 4537-5184 | -1.81 | -0.51 |
+| Ranks 5185-5832 | -1.48 | -0.29 |
+| Ranks 5833-6479 (tail) | -1.22 | -0.12 |
 
 ## 8. Validation
 
@@ -123,7 +122,7 @@ Validate output schema:
 python -c "
 import json
 from jsonschema import validate
-with open('eval_out.json') as f: data = json.load(f)
+with open('exp_eval_sol_out.json') as f: data = json.load(f)
 with open('/Users/Shared/aii_data/.claude/skills/aii-json/schemas/exp_eval_sol_out.json') as f: schema = json.load(f)
 validate(instance=data, schema=schema)
 print('Schema validation: PASSED')
@@ -132,18 +131,12 @@ print('Schema validation: PASSED')
 
 ## 9. Figures Generation (Optional)
 
-The figures are pre-generated but can be regenerated:
+The figures are pre-generated but can be regenerated using aii-data-fig-gen:
 ```bash
-cd figures
 # Requires aii-data-fig-gen skill environment
-python -c "
-import json, sys
-sys.path.insert(0, '/path/to/aii-data-fig-gen/scripts')
-from chart_gen import main
-import subprocess
-for spec in ['fig1_loglog.json', 'fig2_residuals.json', 'fig3_model_comparison.json', 'fig4_residual_bins.json', 'fig5_panel.json']:
-    subprocess.run(['python', '/path/to/aii-data-fig-gen/scripts/chart_gen.py', '--spec', spec, '--out', spec.replace('.json','')])
-"
+python /path/to/aii-data-fig-gen/scripts/chart_gen.py --spec fig_model_comparison.json --out fig_model_comparison
+python /path/to/aii-data-fig-gen/scripts/chart_gen.py --spec fig_residuals.json --out fig_residuals
+python /path/to/aii-data-fig-gen/scripts/chart_gen.py --spec fig_rank_freq.json --out fig_rank_freq
 ```
 
 ## 10. Troubleshooting
@@ -151,11 +144,12 @@ for spec in ['fig1_loglog.json', 'fig2_residuals.json', 'fig3_model_comparison.j
 - **ModuleNotFoundError**: Ensure all dependencies from step 3 are installed
 - **Font warnings (CMU Serif)**: Harmless; matplotlib falls back to DejaVu Serif
 - **File not found for input text**: Ensure `../gen_art_dataset_1/pride_and_prejudice_clean.txt` exists relative to this directory, or update the path in `eval.py`
-- **Schema validation fails**: Check that `eval_out.json` matches the exp_eval_sol_out schema structure
+- **Schema validation fails**: Check that `exp_eval_sol_out.json` matches the exp_eval_sol_out schema structure
 
 ## 11. Notes
 
 - The evaluation uses MLE (Maximum Likelihood Estimation) via SciPy's Nelder-Mead (ZM) and bounded scalar minimization (Zipf)
 - No random seeds are involved; results are deterministic
 - The tokenization uses regex `[a-zA-Z]+` on lowercase text
-- All numerical results in the paper/figures should match the values in `eval_out.json`
+- All numerical results in the paper/figures should match the values in `exp_eval_sol_out.json`
+- This artifact follows computational linguistics best practices (Clauset et al., 2009; Corral et al., 2015)

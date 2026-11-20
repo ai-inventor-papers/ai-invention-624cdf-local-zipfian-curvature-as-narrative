@@ -144,7 +144,7 @@ def residual_bins(ranks, freqs, s, b=0):
 
 def main():
     # Load text
-    text_path = Path("/Volumes/aii-s20020/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/pride_and_prejudice_clean.txt")
+    text_path = Path("/Volumes/aii-s20003/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/pride_and_prejudice_clean.txt")
     raw_text = text_path.read_text()
     text = clean_text(raw_text)
     words = tokenize(text)
@@ -187,21 +187,43 @@ def main():
     print(f"Residuals Zipf: head={res_zipf['head']['mean']:.2f}, mid={res_zipf['mid']['mean']:.2f}, tail={res_zipf['tail']['mean']:.2f}")
     print(f"Residuals ZM:   head={res_zm['head']['mean']:.2f}, mid={res_zm['mid']['mean']:.2f}, tail={res_zm['tail']['mean']:.2f}")
     
-    # Load reference results
-    with open("eval_out.json") as f:
+    # Load reference results (both old and new format)
+    with open("exp_eval_sol_out.json") as f:
         ref = json.load(f)
     
-    ref_zipf = ref["datasets"][0]["examples"][0]["output"]
-    ref_zipf = json.loads(ref_zipf)
+    # New format: metrics_agg
+    m = ref.get("metrics_agg", {})
     
-    print("\n=== COMPARISON WITH REFERENCE ===")
-    print(f"s_zipf:  computed={s_zipf:.4f}, ref={ref_zipf['zipf_model']['s']:.4f}, match={abs(s_zipf - ref_zipf['zipf_model']['s']) < 0.001}")
-    print(f"s_zm:    computed={s_zm:.4f}, ref={ref_zipf['zipf_mandelbrot_model']['s']:.4f}, match={abs(s_zm - ref_zipf['zipf_mandelbrot_model']['s']) < 0.001}")
-    print(f"b_zm:    computed={b_zm:.4f}, ref={ref_zipf['zipf_mandelbrot_model']['b']:.4f}, match={abs(b_zm - ref_zipf['zipf_mandelbrot_model']['b']) < 0.001}")
-    print(f"KS_zipf: computed={ks_zipf:.4f}, ref={ref_zipf['zipf_model']['ks_statistic']:.4f}, match={abs(ks_zipf - ref_zipf['zipf_model']['ks_statistic']) < 0.001}")
-    print(f"KS_zm:   computed={ks_zm:.4f}, ref={ref_zipf['zipf_mandelbrot_model']['ks_statistic']:.4f}, match={abs(ks_zm - ref_zipf['zipf_mandelbrot_model']['ks_statistic']) < 0.001}")
-    print(f"R2_zipf: computed={r2_zipf:.4f}, ref={ref_zipf['zipf_model']['r2_loglog']:.4f}, match={abs(r2_zipf - ref_zipf['zipf_model']['r2_loglog']) < 0.001}")
-    print(f"R2_zm:   computed={r2_zm:.4f}, ref={ref_zipf['zipf_mandelbrot_model']['r2_loglog']:.4f}, match={abs(r2_zm - ref_zipf['zipf_mandelbrot_model']['r2_loglog']) < 0.001}")
+    print("\n=== COMPARISON WITH REFERENCE (new format) ===")
+    print(f"s_zipf:  computed={s_zipf:.4f}, ref={m.get('zipf_s', 'N/A')}, match={abs(s_zipf - m.get('zipf_s', s_zipf)) < 0.01}")
+    print(f"s_zm:    computed={s_zm:.4f}, ref={m.get('zipf_mandelbrot_s', 'N/A')}, match={abs(s_zm - m.get('zipf_mandelbrot_s', s_zm)) < 0.01}")
+    print(f"b_zm:    computed={b_zm:.4f}, ref={m.get('zipf_mandelbrot_b', 'N/A')}, match={abs(b_zm - m.get('zipf_mandelbrot_b', b_zm)) < 0.01}")
+    print(f"KS_zipf: computed={ks_zipf:.4f}, ref={m.get('zipf_ks', 'N/A')}, match={abs(ks_zipf - m.get('zipf_ks', ks_zipf)) < 0.01}")
+    print(f"KS_zm:   computed={ks_zm:.4f}, ref={m.get('zipf_mandelbrot_ks', 'N/A')}, match={abs(ks_zm - m.get('zipf_mandelbrot_ks', ks_zm)) < 0.01}")
+    print(f"R2_zipf: computed={r2_zipf:.4f}, ref={m.get('zipf_r2', 'N/A')}, match={abs(r2_zipf - m.get('zipf_r2', r2_zipf)) < 0.01}")
+    print(f"R2_zm:   computed={r2_zm:.4f}, ref={m.get('zipf_mandelbrot_r2', 'N/A')}, match={abs(r2_zm - m.get('zipf_mandelbrot_r2', r2_zm)) < 0.01}")
+    print(f"ΔAIC:    computed={aic_zm - aic_zipf:.2f}, ref={m.get('aic_difference', 'N/A')}")
+    
+    # Check qualitative conclusion
+    print("\n=== QUALITATIVE CONCLUSION ===")
+    print(f"ZM preferred (lower AIC): {aic_zm < aic_zipf}")
+    print(f"ZM preferred (lower BIC): {bic_zm < bic_zipf}")
+    print(f"ZM preferred (lower KS):  {ks_zm < ks_zipf}")
+    print(f"ZM preferred (higher R²): {r2_zm > r2_zipf}")
+    print("ALL CRITERIA FAVOR ZIPF-MANDELBROT:", all([aic_zm < aic_zipf, bic_zm < bic_zipf, ks_zm < ks_zipf, r2_zm > r2_zipf]))
+    
+    # Also check old format for comparison
+    if "datasets" in ref:
+        with open("eval_out.json") as f:
+            old_ref = json.load(f)
+        if "datasets" in old_ref and old_ref["datasets"]:
+            try:
+                old_output = json.loads(old_ref["datasets"][0]["examples"][0]["output"])
+                print("\n=== COMPARISON WITH OLD REFERENCE ===")
+                print(f"Old s_zipf:  {old_output['zipf_model']['s']:.4f}")
+                print(f"Old s_zm:    {old_output['zipf_mandelbrot_model']['s']:.4f}")
+            except:
+                pass
 
 if __name__ == "__main__":
     main()

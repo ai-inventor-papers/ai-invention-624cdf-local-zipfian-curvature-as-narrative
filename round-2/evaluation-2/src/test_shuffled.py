@@ -106,7 +106,7 @@ def calculate_r_squared(ranks, freqs, s, b=0):
 
 def main():
     # Load text
-    text_path = Path("/Volumes/aii-s20020/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/pride_and_prejudice_clean.txt")
+    text_path = Path("/Volumes/aii-s20003/work/run_fODCbnzS2ZPQ/3_invention_loop/iter_1/gen_art/gen_art_dataset_1/pride_and_prejudice_clean.txt")
     raw_text = text_path.read_text()
     text = clean_text(raw_text)
     words = tokenize(text)
