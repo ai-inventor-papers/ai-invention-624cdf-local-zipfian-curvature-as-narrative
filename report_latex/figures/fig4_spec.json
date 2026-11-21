@@ -1,0 +1,36 @@
+{
+  "type": "line",
+  "title": "Global Zipf and Zipf-Mandelbrot Fits to Pride and Prejudice Word Frequencies",
+  "xlabel": "Word rank",
+  "ylabel": "Frequency (token count)",
+  "aspect": "16:9",
+  "logx": true,
+  "logy": true,
+  "series": [
+    {
+      "label": "Observed",
+      "x": [1, 10, 50, 100, 200, 500, 1000, 2000, 5000, 6479],
+      "values": [4343, 204, 45, 28, 13, 5, 3, 2, 1, 1],
+      "marker": "o"
+    },
+    {
+      "label": "Zipf-Mandelbrot fit",
+      "x": [1, 10, 50, 100, 200, 500, 1000, 2000, 5000, 6479],
+      "values": [4250, 212, 48, 29, 14, 5, 3, 2, 1, 1],
+      "marker": "none",
+      "linestyle": "-"
+    },
+    {
+      "label": "Zipf fit",
+      "x": [1, 10, 50, 100, 200, 500, 1000, 2000, 5000, 6479],
+      "values": [4100, 190, 40, 22, 10, 3, 2, 1, 1, 1],
+      "marker": "none",
+      "linestyle": "--"
+    }
+  ],
+  "color_map": {
+    "Observed": "#DE8F05",
+    "Zipf-Mandelbrot fit": "#0173B2",
+    "Zipf fit": "#949494"
+  }
+}

@@ -1,0 +1,74 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{graphicx, geometry, amsmath, hyperref, url, natbib, booktabs, longtable, xcolor, listings}
+\geometry{margin=0.75in}
+\hypersetup{colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.75}
+
+\title{Zipf's Law Falls Short: The Zipf-Mandelbrot Model Accurately Captures Word Frequencies in Pride and Prejudice}
+\date{2026-11-20}
+
+\begin{document}
+
+\maketitle
+
+\section{Headline}
+
+Finding: Global Zipf-Mandelbrot model accuracy on \textit{Pride and Prejudice}. The standard Zipf power law (1 parameter) poorly fits the novel (R$^2$=0.741, KS=0.093), while the Zipf-Mandelbrot model (2 parameters, s=1.266, b=8.138) provides an excellent fit (R$^2$=0.967, KS=0.011), decisively favored by $\Delta$AIC=21,449. Evidence grade: \textbf{strong\_survivor} (pre-registered test passed, replicated across three independent evaluation artifacts: gen\_art\_experiment\_2, gen\_art\_evaluation\_2, gen\_art\_evaluation\_3, Iteration 2). Scope: Single novel (\textit{Pride and Prejudice}), 123,350 tokens, 6,425 types; MLE with bootstrap CIs (n=100); confirmed across three independent evaluation artifacts. Source: Iteration 2, artifacts gen\_art\_experiment\_2, gen\_art\_evaluation\_2, gen\_art\_evaluation\_3.
+
+\section{Goal}
+
+The run set out to answer: \textbf{``How accurately does Zipf's law describe word frequencies in a public-domain novel such as Pride and Prejudice?''} An initial exploratory Iteration 1 tested whether local Zipfian curvature drift correlates with narrative semantic intensity across rolling windows (a different hypothesis). Iteration 2 corrected dataset statistics and directly addressed the original question with rigorous global MLE-based fitting of Zipf and Zipf-Mandelbrot models.
+
+\section{What Was Tried}
+
+\textbf{Iteration 1 (Round 1):} Local curvature--semantic drift correlation. Partitioned \textit{Pride and Prejudice} into 10 sections with rolling 500-token windows (100-token stride), fitted Zipf-Mandelbrot via MLE, computed semantic drift via deterministic 300-dim hash-based embeddings, correlated curvature drift ($\Delta b$) with semantic drift against 10 shuffled-text baselines per section. Also tested standard Zipf power-law baseline (degenerate: b=0 fixed, NaN correlations). Artifacts: gen\_art\_dataset\_1 (dataset), gen\_art\_experiment\_1 (experiment).
+
+\textbf{Iteration 2 (Round 2):} Global Zipfian fit accuracy. Recomputed dataset summary statistics (corrected errors from Iteration 1). Performed MLE fitting of Zipf and Zipf-Mandelbrot on full novel frequency table (123,350 tokens, 6,425 types). Computed AIC/BIC, KS statistic, R$^2$, bootstrap CIs (n=100), and residual analysis by frequency-rank bins. Generated publication-quality log-log rank-frequency and residual plots. Artifacts: gen\_art\_experiment\_2 (global fit experiment), gen\_art\_evaluation\_2 (rigorous MLE evaluation), gen\_art\_evaluation\_3 (statistics correction and confirmation).
+
+\section{Key Results}
+
+\begin{table}[!htbp]
+\centering
+\caption{Key results with source artifacts and evidence grades from round records.}
+\label{tab:key_results}
+\begin{tabular}{llll}
+\toprule
+Result & Value & Artifact / Round & Grade \\
+\midrule
+Zipf exponent (s) & 0.992 [0.991, 0.995] & gen\_art\_experiment\_2 / Iter 2 & strong\_survivor \\
+Zipf-Mandelbrot s & 1.266 [1.258, 1.269] & gen\_art\_experiment\_2 / Iter 2 & strong\_survivor \\
+Zipf-Mandelbrot b & 8.138 [7.943, 8.410] & gen\_art\_experiment\_2 / Iter 2 & strong\_survivor \\
+Zipf R$^2$ / KS & 0.741 / 0.093 & gen\_art\_evaluation\_2 / Iter 2 & strong\_survivor \\
+Zipf-Mandelbrot R$^2$ / KS & 0.967 / 0.011 & gen\_art\_evaluation\_2 / Iter 2 & strong\_survivor \\
+$\Delta$AIC (ZM vs Zipf) & 21,449 & gen\_art\_evaluation\_2 / Iter 2 & strong\_survivor \\
+Head residual (Zipf) & $\sim$15.1 & gen\_art\_evaluation\_2 / Iter 2 & strong\_survivor \\
+Head residual (ZM) & $\sim$0.07 & gen\_art\_evaluation\_2 / Iter 2 & strong\_survivor \\
+Local curvature--semantic corr. & r = -0.025 $\pm$ 0.075 & gen\_art\_experiment\_1 / Iter 1 & null \\
+Shuffled baseline mean p & 0.477 $\pm$ 0.234 & gen\_art\_experiment\_1 / Iter 1 & null \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{What Failed}
+
+\textbf{Local curvature--semantic drift correlation (Iteration 1):} Null result. Mean Pearson r = -0.025 $\pm$ 0.075, indistinguishable from shuffled baselines (p = 0.48 $\pm$ 0.23). No section reached p < 0.05. Reasons: (1) Standard Zipf power law degenerate for curvature analysis (b $\equiv$ 0). (2) Hash-based embeddings capture only word-identity statistics, not contextual semantics. (3) Window parameters (500 tokens, 100 stride) may be suboptimal: curvature parameter b has CV $\approx$ 0.77, signal-to-noise unfavorable (curvature drift std $\sim$0.6 vs semantic drift std $\sim$0.01). (4) Section-wise analysis may dilute effects at specific narrative boundaries. (5) Curvature drift (first difference of b) may be the wrong derivative.
+
+\textbf{Dataset statistics (Iteration 1):} Original report contained systematic errors (function word ratio 0.568 vs actual 0.548; type-token ratio 0.403 vs 0.450; unique tokens 302.3 vs 337.4). Corrected in Iteration 2 via gen\_art\_evaluation\_3.
+
+\textbf{Coverage loss (Iteration 1):} The user's original question (global Zipf accuracy) was untested; the run pursued a different hypothesis (curvature--semantic correlation).
+
+\section{Open Questions}
+
+\begin{enumerate}
+\item Would a contextual embedding model (e.g., sentence-BERT) produce stronger semantic drift signals that correlate with curvature drift?
+\item Does curvature--semantic coupling exist at specific narrative boundaries (chapter breaks, scene changes) rather than uniformly across rolling windows?
+\item Would a different semantic intensity metric (entity introduction rate, topic model perplexity, lexical entropy) correlate with Zipfian deviation?
+\item Is the effect specific to \textit{Pride and Prejudice}, or would other novels show different patterns?
+\item Could a non-linear relationship exist that Pearson/Spearman miss (e.g., curvature drift magnitude predicts semantic drift regardless of sign)?
+\item The executive summary is at most 4 pages. The full report is 15 pages.
+\end{enumerate}
+
+\end{document}
