@@ -1,0 +1,29 @@
+{
+  "type": "barh",
+  "title": "Residuals by Frequency Bin: Zipf-Mandelbrot Fit",
+  "xlabel": "Mean Residual (Observed - Fitted)",
+  "ylabel": "Rank Bin",
+  "aspect": "16:9",
+  "categories": [
+    "Ranks 1-648 (head)",
+    "Ranks 649-1296",
+    "Ranks 1297-1944",
+    "Ranks 1945-2592",
+    "Ranks 2593-3240",
+    "Ranks 3241-3888",
+    "Ranks 3889-4536",
+    "Ranks 4537-5184",
+    "Ranks 5185-5832",
+    "Ranks 5833-6479 (tail)"
+  ],
+  "series": [
+    {
+      "label": "Zipf-Mandelbrot",
+      "values": [0.09, 1.54, 0.40, -0.04, -0.18, -0.25, -0.64, -0.51, -0.29, -0.12]
+    },
+    {
+      "label": "Zipf (b=0)",
+      "values": [15.07, -0.73, -1.90, -2.06, -1.96, -1.83, -2.06, -1.81, -1.48, -1.22]
+    }
+  ]
+}

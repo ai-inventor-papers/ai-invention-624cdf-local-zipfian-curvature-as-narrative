@@ -1,0 +1,51 @@
+{
+  "datasets": [
+    {
+      "dataset": "pride_and_prejudice_rolling_windows",
+      "examples": [
+        {
+          "input": "{\"text\": \"CHAPTER I.\\n\\n\\nIt is a truth universally acknowledged, that a single man in possession\\nof a good fortune, must be in want of a wife.\\n\\nHowever little known the feelings or views of such a...",
+          "output": "{\"total_tokens\": 750, \"unique_tokens\": 287, \"function_word_count\": 432, \"content_word_count\": 318, \"function_word_ratio\": 0.576, \"type_token_ratio\": 0.38266666666666665}",
+          "metadata_window_index": 0,
+          "metadata_token_start": 0,
+          "metadata_token_end": 750,
+          "metadata_char_start": 0,
+          "metadata_char_end": 3872,
+          "metadata_total_tokens": 750,
+          "metadata_unique_tokens": 287,
+          "metadata_function_word_count": 432,
+          "metadata_content_word_count": 318,
+          "metadata_function_word_ratio": 0.576
+        },
+        {
+          "input": "{\"text\": \"in the minds\\nof the surrounding families, that he is considered as the rightful\\nproperty of some one or other of their daughters.\\n\\n\\\"My dear Mr. Bennet,\\\" said his lady to him one day, \\...",
+          "output": "{\"total_tokens\": 750, \"unique_tokens\": 292, \"function_word_count\": 434, \"content_word_count\": 316, \"function_word_ratio\": 0.5786666666666667, \"type_token_ratio\": 0.3893333333333333}",
+          "metadata_window_index": 1,
+          "metadata_token_start": 50,
+          "metadata_token_end": 800,
+          "metadata_char_start": 263,
+          "metadata_char_end": 4142,
+          "metadata_total_tokens": 750,
+          "metadata_unique_tokens": 292,
+          "metadata_function_word_count": 434,
+          "metadata_content_word_count": 316,
+          "metadata_function_word_ratio": 0.5786666666666667
+        },
+        {
+          "input": "{\"text\": \"not.\\n\\n\\\"But it is,\\\" returned she; \\\"for Mrs. Long has just been here, and she\\ntold me all about it.\\\"\\n\\nMr. Bennet made no answer.\\n\\n\\\"Do not you want to know who has taken it?\\\" cried...",
+          "output": "{\"total_tokens\": 750, \"unique_tokens\": 299, \"function_word_count\": 431, \"content_word_count\": 319, \"function_word_ratio\": 0.5746666666666667, \"type_token_ratio\": 0.39866666666666667}",
+          "metadata_window_index": 2,
+          "metadata_token_start": 100,
+          "metadata_token_end": 850,
+          "metadata_char_start": 533,
+          "metadata_char_end": 4453,
+          "metadata_total_tokens": 750,
+          "metadata_unique_tokens": 299,
+          "metadata_function_word_count": 431,
+          "metadata_content_word_count": 319,
+          "metadata_function_word_ratio": 0.5746666666666667
+        }
+      ]
+    }
+  ]
+}

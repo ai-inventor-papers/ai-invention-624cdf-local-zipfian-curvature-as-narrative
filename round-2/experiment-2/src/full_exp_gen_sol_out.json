@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "method_name": "Global Zipf Fit on Pride and Prejudice",
+    "description": "MLE fitting of Zipf and Zipf-Mandelbrot models to global word frequencies",
+    "parameters": {
+      "n_bootstrap": 100,
+      "model_types": [
+        "zipf",
+        "zipf_mandelbrot"
+      ]
+    },
+    "novel_stats": {
+      "total_tokens": 123350,
+      "vocabulary_size": 6425,
+      "max_frequency": 4338,
+      "min_frequency": 1
+    },
+    "bootstrap_ci": {
+      "zipf": {
+        "s": [
+          0.9911004911652695,
+          0.9952106434765149
+        ]
+      },
+      "zipf_mandelbrot": {
+        "s": [
+          1.258252762876514,
+          1.2690043084742577
+        ],
+        "b": [
+          7.943007670724084,
+          8.41004930743093
+        ]
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "pride_and_prejudice_global_zipf",
+      "examples": [
+        {
+          "input": "{\"task\": \"fit_zipf_mle\", \"model\": \"zipf\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"s\": 0.9924272695949843, \"nll\": 788766.4305548917, \"aic\": 1577534.8611097834, \"ks_statistic\": 0.09349229078785598, \"r2_loglog\": 0.7390240538164308, \"bootstrap_ci\": [0.9911004911652695, 0.9952106434765149]}",
+          "metadata_model": "zipf",
+          "metadata_n_params": 1,
+          "predict_zipf": "{\"s\": 0.9924272695949843, \"model\": \"zipf\"}"
+        },
+        {
+          "input": "{\"task\": \"fit_zipf_mle\", \"model\": \"zipf_mandelbrot\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"s\": 1.2671043263376347, \"b\": 8.164884585229958, \"nll\": 778034.4437352057, \"aic\": 1556072.8874704114, \"ks_statistic\": 0.011195099331401032, \"r2_loglog\": 0.9664875488563884, \"bootstrap_ci\": {\"s\": [1.258252762876514, 1.2690043084742577], \"b\": [7.943007670724084, 8.41004930743093]}}",
+          "metadata_model": "zipf_mandelbrot",
+          "metadata_n_params": 2,
+          "predict_zipf_mandelbrot": "{\"s\": 1.2671043263376347, \"b\": 8.164884585229958, \"model\": \"zipf_mandelbrot\"}"
+        },
+        {
+          "input": "{\"task\": \"compare_models\", \"models\": [\"zipf\", \"zipf_mandelbrot\"], \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"aic_diff_zipf_minus_zm\": 21461.973639372038, \"preferred_model\": \"zipf_mandelbrot\", \"ks_zipf\": 0.09349229078785598, \"ks_zm\": 0.011195099331401032, \"r2_zipf\": 0.7390240538164308, \"r2_zm\": 0.9664875488563884}",
+          "metadata_model": "comparison",
+          "metadata_n_params": 0,
+          "predict_comparison": "{\"preferred\": \"zipf_mandelbrot\", \"aic_diff\": 21461.973639372038}"
+        },
+        {
+          "input": "{\"task\": \"residual_analysis\", \"model\": \"zipf\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"head\": {\"mean_residual\": 15.198320827398502, \"mean_relative_residual\": 0.20110048396700086, \"std_residual\": 356.5478190637788, \"n\": 642}, \"body\": {\"mean_residual\": -1.6670150158003854, \"mean_relative_residual\": -0.26439264994245315, \"std_residual\": 0.7760424512312286, \"n\": 2570}, \"tail\": {\"mean_residual\": -1.7034215314605758, \"mean_relative_residual\": -0.5837993998008331, \"std_residual\": 0.3453610647666667, \"n\": 3213}}",
+          "metadata_model": "zipf",
+          "metadata_analysis": "residuals",
+          "predict_residuals_zipf": "{\"model\": \"zipf\", \"bins\": [\"head\", \"body\", \"tail\"]}"
+        },
+        {
+          "input": "{\"task\": \"residual_analysis\", \"model\": \"zipf_mandelbrot\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"head\": {\"mean_residual\": 0.07441819278702501, \"mean_relative_residual\": 0.05393489585633715, \"std_residual\": 44.57136900121372, \"n\": 642}, \"body\": {\"mean_residual\": 0.4447229625187177, \"mean_relative_residual\": 0.027225156326091363, \"std_residual\": 0.8340257417542559, \"n\": 2570}, \"tail\": {\"mean_residual\": -0.37059274616943955, \"mean_relative_residual\": -0.2303531624406645, \"std_residual\": 0.24942275657219368, \"n\": 3213}}",
+          "metadata_model": "zipf_mandelbrot",
+          "metadata_analysis": "residuals",
+          "predict_residuals_zm": "{\"model\": \"zipf_mandelbrot\", \"bins\": [\"head\", \"body\", \"tail\"]}"
+        },
+        {
+          "input": "{\"task\": \"frequency_distribution_stats\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"n_types\": 6425, \"n_tokens\": 123350, \"hapax_legomena\": 2447, \"dis_legomena\": 936, \"max_freq\": 4338, \"type_token_ratio\": 0.05208755573571139, \"entropy\": 6.3021751952262175, \"freq_above_10\": 1129, \"freq_above_100\": 156}",
+          "metadata_analysis": "freq_stats",
+          "predict_freq_stats": "{\"n_types\": 6425, \"hapax_legomena\": 2447}"
+        },
+        {
+          "input": "{\"task\": \"per_rank_residuals\", \"model\": \"zipf\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"head_top_10\": {\"ranks\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], \"observed\": [4338, 4161, 3629, 3587, 2205, 2053, 1943, 1882, 1844, 1689], \"predicted\": [12792.54566990675, 6429.935248065133, 4299.80570913948, 3231.887410147647, 2589.8826316629716, 2161.217399760056, 1854.6357871814853, 1624.4481209999678, 1445.2423789145034, 1301.7563549415743], \"residuals\": [-8454.54566990675, -2268.9352480651332, -670.8057091394803, 355.1125898523528, -384.88263166297156, -108.2173997600562, 88.36421281851472, 257.55187900003216, 398.75762108549657, 387.2436450584257]}}",
+          "metadata_model": "zipf",
+          "metadata_analysis": "per_rank_head",
+          "predict_head_ranks": "{\"n\": 10, \"model\": \"zipf\"}"
+        },
+        {
+          "input": "{\"task\": \"per_rank_residuals\", \"model\": \"zipf_mandelbrot\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"head_top_10\": {\"ranks\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], \"observed\": [4338, 4161, 3629, 3587, 2205, 2053, 1943, 1882, 1844, 1689], \"predicted\": [4273.424915710148, 3747.8956302628503, 3327.7502434772, 2985.0137080214845, 2700.6802441290392, 2461.4121406135537, 2257.589715637052, 2082.110535626943, 1929.6233777027041, 1796.0244005647696], \"residuals\": [64.57508428985238, 413.1043697371497, 301.2497565228, 601.9862919785155, -495.68024412903924, -408.4121406135537, -314.589715637052, -200.11053562694315, -85.62337770270415, -107.02440056476962]}}",
+          "metadata_model": "zipf_mandelbrot",
+          "metadata_analysis": "per_rank_head",
+          "predict_head_ranks": "{\"n\": 10, \"model\": \"zipf_mandelbrot\"}"
+        },
+        {
+          "input": "{\"task\": \"goodness_of_fit_by_frequency_bin\", \"model\": \"zipf\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"bins\": {\"high_freq\": {\"freq_range\": [4338, 22], \"r2_loglog\": 0.9801653259562554, \"ks\": 0.14697081698561756}, \"mid_freq\": {\"freq_range\": [22, 2], \"r2_loglog\": -1.5163495313033462, \"ks\": 0.4927951435558596}, \"low_freq\": {\"freq_range\": [2, 1], \"r2_loglog\": -1.2117074365508076, \"ks\": 0.5729296654745049}}}",
+          "metadata_model": "zipf",
+          "metadata_analysis": "gof_by_bin",
+          "predict_gof_bins": "{\"model\": \"zipf\", \"bins\": 3}"
+        },
+        {
+          "input": "{\"task\": \"goodness_of_fit_by_frequency_bin\", \"model\": \"zipf_mandelbrot\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"bins\": {\"high_freq\": {\"freq_range\": [4338, 22], \"r2_loglog\": 0.9932451642760056, \"ks\": 0.013485557423630834}, \"mid_freq\": {\"freq_range\": [22, 2], \"r2_loglog\": -2.354288456023802, \"ks\": 0.5239257338981917}, \"low_freq\": {\"freq_range\": [2, 1], \"r2_loglog\": -1.7044364237363538, \"ks\": 0.6252410415078786}}}",
+          "metadata_model": "zipf_mandelbrot",
+          "metadata_analysis": "gof_by_bin",
+          "predict_gof_bins": "{\"model\": \"zipf_mandelbrot\", \"bins\": 3}"
+        },
+        {
+          "input": "{\"task\": \"bootstrap_parameter_stability\", \"model\": \"zipf\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"n_bootstrap\": 100, \"s_ci\": [0.9911004911652695, 0.9952106434765149], \"s_mean\": 0.9931555673208923, \"s_width\": 0.004110152311245341}",
+          "metadata_model": "zipf",
+          "metadata_analysis": "bootstrap_stability",
+          "predict_bootstrap_zipf": "{\"param\": \"s\", \"ci\": [0.9911004911652695, 0.9952106434765149]}"
+        },
+        {
+          "input": "{\"task\": \"bootstrap_parameter_stability\", \"model\": \"zipf_mandelbrot\", \"data\": \"pride_and_prejudice_global\"}",
+          "output": "{\"n_bootstrap\": 100, \"s_ci\": [1.258252762876514, 1.2690043084742577], \"b_ci\": [7.943007670724084, 8.41004930743093], \"s_mean\": 1.263628535675386, \"s_width\": 0.010751545597743606, \"b_mean\": 8.176528489077507, \"b_width\": 0.4670416367068455}",
+          "metadata_model": "zipf_mandelbrot",
+          "metadata_analysis": "bootstrap_stability",
+          "predict_bootstrap_zm": "{\"params\": [\"s\", \"b\"], \"s_ci\": [1.258252762876514, 1.2690043084742577], \"b_ci\": [7.943007670724084, 8.41004930743093]}"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "zipf_params": {
+    "s": 0.9924272695949843
+  },
+  "zipf_mandelbrot_params": {
+    "s": 1.2671043263376347,
+    "b": 8.164884585229958
+  },
+  "aic_zipf": 1577534.8611097834,
+  "aic_zm": 1556072.8874704114,
+  "aic_diff": 21461.973639372038,
+  "ks_zipf": 0.09349229078785598,
+  "ks_zm": 0.011195099331401032,
+  "r2_zipf": 0.7390240538164308,
+  "r2_zm": 0.9664875488563884,
+  "residuals_zipf": {
+    "head": {
+      "mean_residual": 15.198320827398502,
+      "mean_relative_residual": 0.20110048396700086,
+      "std_residual": 356.5478190637788,
+      "n": 642
+    },
+    "body": {
+      "mean_residual": -1.6670150158003854,
+      "mean_relative_residual": -0.26439264994245315,
+      "std_residual": 0.7760424512312286,
+      "n": 2570
+    },
+    "tail": {
+      "mean_residual": -1.7034215314605758,
+      "mean_relative_residual": -0.5837993998008331,
+      "std_residual": 0.3453610647666667,
+      "n": 3213
+    }
+  },
+  "residuals_zm": {
+    "head": {
+      "mean_residual": 0.07441819278702501,
+      "mean_relative_residual": 0.05393489585633715,
+      "std_residual": 44.57136900121372,
+      "n": 642
+    },
+    "body": {
+      "mean_residual": 0.4447229625187177,
+      "mean_relative_residual": 0.027225156326091363,
+      "std_residual": 0.8340257417542559,
+      "n": 2570
+    },
+    "tail": {
+      "mean_residual": -0.37059274616943955,
+      "mean_relative_residual": -0.2303531624406645,
+      "std_residual": 0.24942275657219368,
+      "n": 3213
+    }
+  },
+  "bootstrap_ci": {
+    "zipf": {
+      "s": [
+        0.9911004911652695,
+        0.9952106434765149
+      ]
+    },
+    "zipf_mandelbrot": {
+      "s": [
+        1.258252762876514,
+        1.2690043084742577
+      ],
+      "b": [
+        7.943007670724084,
+        8.41004930743093
+      ]
+    }
+  },
+  "novel_stats": {
+    "total_tokens": 123350,
+    "vocabulary_size": 6425
+  }
+}
